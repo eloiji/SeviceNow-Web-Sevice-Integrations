@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri>/api/x_1931947_web_se_0/training/course_plus</default_operation_uri>
+        <enforce_acl>36f47084835307588705b9c6feaad3cf</enforce_acl>
+        <http_method>GET</http_method>
+        <name>Course Plus</name>
+        <operation_script><![CDATA[(function process( /*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    var answer = {
+        "course": {
+            "id": null,
+            "name": "No Course",
+            "start": null,
+            "end": null,
+            "capacity": 0,
+            "min_threshold": 0,
+            "attendee_count": 0,
+            "course_offering": {
+                "value": null,
+                "display_value": null
+            },
+            "state": {
+                "value": null,
+                "display_value": null
+            },
+            "assigned_to": {
+                "value": null,
+                "display_value": null
+            },
+        },
+        "students": []
+    };
+    var responseStatus = 404;
+    var courseName = request.queryParams.name.toString();
+    var courseGR = new GlideRecord('x_1931947_web_se_0_training_course');
+
+    if (courseGR.get('name', courseName)) {
+        // update the responseStatus
+        responseStatus = 200;
+
+        // populate course details
+        answer.course = {
+            "id": courseGR.getUniqueValue(),
+            "name": courseGR.getValue('name'),
+            "start": courseGR.getValue('work_start'),
+            "end": courseGR.getValue('work_end'),
+            "capacity": parseInt(courseGR.getValue('capacity'), 10),
+            "min_threshold": parseInt(courseGR.getValue('minimum_threshold'), 10),
+            "attendee_count": parseInt(courseGR.getValue('attendee_count'), 10),
+            "course_offering": {
+                "value": courseGR.getValue('course_offering'),
+                "display_value": courseGR.course_offering.getDisplayValue()
+            },
+            "state": {
+                "value": courseGR.getValue('state'),
+                "display_value": courseGR.state.getDisplayValue()
+            },
+            "assigned_to": {
+                "value": courseGR.getValue('assigned_to'),
+                "display_value": courseGR.assigned_to.getDisplayValue()
+            },
+        };
+
+		var studentGR = new GlideRecord('x_1931947_web_se_0_training_attendee');
+		studentGR.addQuery('course', courseGR.getUniqueValue());
+		studentGR.query();
+
+		// populate student array
+		while(studentGR.next()) {
+			var profileGR = studentGR.employee.getRefRecord();
+			var studentObj = {
+				"id": studentGR.getUniqueValue(),
+				"first_name": profileGR.getValue('first_name'),
+				"last_name": profileGR.getValue('last_name'),
+				"name": profileGR.getValue('name'),
+				"email": profileGR.getValue('email'),
+			};
+			answer.students.push(studentObj);
+		}
+    }
+
+	response.setBody(answer);
+	response.setStatus(responseStatus);
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_1931947_web_se_0/v1/training/course_plus</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/course_plus</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>eloiji</sys_created_by>
+        <sys_created_on>2026-09-08 02:42:22</sys_created_on>
+        <sys_id>de21844c8357c3588705b9c6feaad3e9</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>Course Plus</sys_name>
+        <sys_package display_value="Web Service Integrations" source="x_1931947_web_se_0">8a96f3b783c3c3588705b9c6feaad396</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Web Service Integrations">8a96f3b783c3c3588705b9c6feaad396</sys_scope>
+        <sys_update_name>sys_ws_operation_de21844c8357c3588705b9c6feaad3e9</sys_update_name>
+        <sys_updated_by>eloiji</sys_updated_by>
+        <sys_updated_on>2026-09-08 06:31:33</sys_updated_on>
+        <web_service_definition display_value="Training">fcc6bfb783c3c3588705b9c6feaad313</web_service_definition>
+        <web_service_version display_value="v1">358fa80083dfc3588705b9c6feaad361</web_service_version>
+    </sys_ws_operation>
+</record_update>

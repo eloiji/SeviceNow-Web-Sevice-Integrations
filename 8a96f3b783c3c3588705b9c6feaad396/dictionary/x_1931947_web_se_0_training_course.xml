@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="67dbbffb8307c3588705b9c6feaad3fe" label="Training Course" max_length="40" name="x_1931947_web_se_0_training_course" type="collection">
+        <element label="Assigned to" max_length="32" name="assigned_to" reference="sys_user" type="reference"/>
+        <element label="End" max_length="40" name="work_end" type="glide_date"/>
+        <element label="State" max_length="40" name="state" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Archived" sequence="3" value="Archived"/>
+                <element inactive_on_update="false" label="In Progress" sequence="1" value="In Progress"/>
+                <element inactive_on_update="false" label="Ready" sequence="0" value="Ready"/>
+                <element inactive_on_update="false" label="Ended" sequence="2" value="Ended"/>
+            </choice>
+        </element>
+        <element label="Start" max_length="40" name="work_start" type="glide_date"/>
+        <element label="Course offering" max_length="40" name="course_offering" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Bootcamp" sequence="3" value="Bootcamp"/>
+                <element inactive_on_update="false" label="Beginner" sequence="0" value="Beginner"/>
+                <element inactive_on_update="false" label="Certification" sequence="4" value="Certification"/>
+                <element inactive_on_update="false" label="Intermediate" sequence="1" value="Intermediate"/>
+                <element inactive_on_update="false" label="Advanced" sequence="2" value="Advanced"/>
+            </choice>
+        </element>
+        <element label="Capacity" max_length="40" name="capacity" type="integer"/>
+        <element label="Minimum threshold" max_length="40" name="minimum_threshold" type="integer"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Attendee count" max_length="40" name="attendee_count" type="integer"/>
+        <element label="Name" max_length="100" name="name" type="string"/>
+        <index name="index">
+            <element name="assigned_to"/>
+        </index>
+    </element>
+</database>
