@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rate_limit_rules">
+    <sys_rate_limit_rules action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <api>Training</api>
+        <api_resource>GET /x_1931947_web_se_0/training/course_plus</api_resource>
+        <import_set_table/>
+        <name>Limit training course plus</name>
+        <requests>2</requests>
+        <rest_api_resource>GET /x_1931947_web_se_0/training/course_plus</rest_api_resource>
+        <role/>
+        <sys_class_name>sys_rate_limit_rules</sys_class_name>
+        <sys_created_by>eloiji</sys_created_by>
+        <sys_created_on>2026-09-08 07:03:35</sys_created_on>
+        <sys_id>523c708083d307588705b9c6feaad321</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Limit training course plus</sys_name>
+        <sys_package display_value="Web Service Integrations" source="x_1931947_web_se_0">8a96f3b783c3c3588705b9c6feaad396</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Web Service Integrations">8a96f3b783c3c3588705b9c6feaad396</sys_scope>
+        <sys_update_name>sys_rate_limit_rules_523c708083d307588705b9c6feaad321</sys_update_name>
+        <sys_updated_by>eloiji</sys_updated_by>
+        <sys_updated_on>2026-09-08 07:17:40</sys_updated_on>
+        <table/>
+        <type>User</type>
+        <user display_value="Training LMS">561ff8c883d307588705b9c6feaad3cc</user>
+        <version>latest</version>
+    </sys_rate_limit_rules>
+</record_update>

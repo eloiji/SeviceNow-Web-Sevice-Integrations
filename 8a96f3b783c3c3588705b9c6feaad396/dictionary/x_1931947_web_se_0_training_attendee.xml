@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="97da504883dbc3588705b9c6feaad35b" label="Training Attendee" max_length="40" name="x_1931947_web_se_0_training_attendee" type="collection">
+        <element label="Course" max_length="32" name="course" reference="x_1931947_web_se_0_training_course" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Employee" max_length="32" name="employee" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="course"/>
+        </index>
+        <index name="index2">
+            <element name="employee"/>
+        </index>
+    </element>
+</database>
